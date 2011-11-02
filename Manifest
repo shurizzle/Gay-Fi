@@ -1,0 +1,8 @@
+MIDlet-Name: Gay-fi
+MIDlet-Vendor: shura
+MIDlet-Version: 1.0
+MIDlet-Icon: /icon.png
+MIDlet-Info-URL: http://google.it/
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-2.0
+MIDlet-1: Gay-fi, /icon.png, Gayfi
