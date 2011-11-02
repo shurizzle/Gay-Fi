@@ -1,10 +1,14 @@
-### Modify these appropriately for your system!
+have_config := $(wildcard config.mk)
+ifeq ($(strip $(have_config)),)
+include config.mk
+endif
 
-JDK_BASE=/opt/sun-jdk-1.6.0.29
-J2ME_BASE=/opt/sun-j2me-bin-2.5.2.01
+JDK_BASE ?= /opt/sun-jdk-1.6.0.29
+J2ME_BASE ?= /opt/sun-j2me-bin-2.5.2.01
 
+JAVAC ?= $(JDK_BASE)/bin/javac
+PREVERIFY ?= $(J2ME_BASE)/bin/preverify
 
-JAVAC=$(JDK_BASE)/bin/javac
 JAVA_CFLAGS=-bootclasspath "$(J2ME_BASE)/lib/midpapi20.jar:$(J2ME_BASE)/lib/cldcapi10.jar"  \
 						-target 1.3                                                                     \
 						-source 1.3                                                                     \
@@ -12,7 +16,6 @@ JAVA_CFLAGS=-bootclasspath "$(J2ME_BASE)/lib/midpapi20.jar:$(J2ME_BASE)/lib/cldc
 						-classpath compiled                                                             \
 						-sourcepath .                                                                   \
 						-g
-PREVERIFY=$(J2ME_BASE)/bin/preverify
 PREVERIFY_CLASSPATH=$(J2ME_BASE)/lib/midpapi20.jar:$(J2ME_BASE)/lib/cldcapi10.jar
 
 TARGET="Gay-fi"
@@ -71,7 +74,8 @@ $(VERIFIED)/gayfi/services/AliceAGPF.class: gayfi/services/AliceAGPF.java
 	@echo "MIDlet-Jar-Size: " `stat -c%s $<` >> $@
 
 clean:
-	rm -Rf compiled verified
-	rm -f $(TARGET).jar *.jad
+	@echo Cleaning...
+	@rm -Rf compiled verified
+	@rm -f $(TARGET).jar *.jad
 
 .PHONY: clean all run
