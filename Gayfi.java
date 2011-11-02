@@ -5,6 +5,7 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextBox;
+import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.TextField;
 import javax.microedition.lcdui.List;
 import javax.microedition.lcdui.Alert;
@@ -38,6 +39,10 @@ public class Gayfi extends MIDlet implements gayfi.MIDlet, CommandListener
 
         main = new Alert("GayFi");
         main.setString("GayFi v0.0.1");
+        try {
+          main.setImage(Image.createImage(getClass().getResourceAsStream("/res/logo.png")));
+        } catch(java.io.IOException e) {
+        }
 
         setCommands(main);
         for (Enumeration e = services.elements(); e.hasMoreElements(); ) {
