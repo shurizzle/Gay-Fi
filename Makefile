@@ -1,5 +1,5 @@
 have_config := $(wildcard config.mk)
-ifeq ($(strip $(have_config)),)
+ifneq ($(strip $(have_config)),)
 include config.mk
 endif
 
